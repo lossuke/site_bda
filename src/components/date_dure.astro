@@ -1,0 +1,25 @@
+---
+interface Props {
+	date_fin: Date;
+	date_debut: Date;
+}
+
+const { date_debut, date_fin } = Astro.props;
+const formatDate = new Intl.DateTimeFormat('fr-FR', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+});
+---
+
+
+<p>
+  <span>Du </span>
+  <time datetime={date_debut.toISOString()}>
+  {formatDate.format(date_debut)}
+</time>
+<span> au </span>
+<time datetime={date_fin.toISOString()}>
+  {formatDate.format(date_fin)}
+</time>
+</p>
