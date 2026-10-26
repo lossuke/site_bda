@@ -1,0 +1,147 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Header from '../../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import DateDure from '../../components/date_dure.astro';
+
+const posts = (await getCollection('Actus')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="fr">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				width: 960px;
+			}
+			ul {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 2rem;
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+			ul li {
+				width: calc(50% - 1rem);
+			}
+			ul li * {
+				text-decoration: none;
+				transition: 0.2s ease;
+			}
+			ul li{
+				width: 100%;
+				margin-bottom: 1rem;
+				text-align: center;
+			}
+			ul li img {
+				width: 100%;
+			}
+			ul li .title {
+				font-size: 2.369rem;
+			}
+			ul li img {
+				margin-bottom: 0.5rem;
+				border-radius: 12px;
+			}
+			ul li a {
+				display: block;
+			}
+			.title {
+				margin: 0;
+				color: rgb(var(--black));
+				line-height: 1;
+			}
+			.date {
+				margin: 0;
+				color: rgb(var(--gray));
+			}
+			.texte_a{
+				color: black;
+			}
+			
+			ul li a:hover h4,
+			ul li a:hover .date {
+				color: rgb(var(--accent));
+			}
+			ul a:hover img {
+				box-shadow: var(--box-shadow);
+			}
+			.container{
+				display: flex;
+				flex-direction: column;
+			}
+			.child{
+				display: flex;
+				flex-direction: column;
+			}
+			.texte{
+				display: flex;
+				flex-direction: column;
+			}
+			@media (max-width: 720px) {
+				ul {
+					gap: 0.5em;
+				}
+				ul li {
+					width: 100%;
+					text-align: center;
+				}
+				ul li {
+					margin-bottom: 0;
+				}
+				ul li .title {
+					font-size: 1.563em;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section>
+				<ul>
+					<div class="container">
+					{
+						posts.map((post) => (
+							<div class="child">
+								<li>
+								
+								
+								<a href={`/Actu/${post.id}/`}>
+									
+								
+								<div class="texte">
+									<h4 class="title">{post.data.title}</h4>
+									<p class="date">
+										<FormattedDate date={post.data.pubDate} />
+									</p>
+									{post.data.date_debut && post.data.date_fin && (
+										<DateDure
+											date_debut={post.data.date_debut}
+											date_fin={post.data.date_fin} 
+										/>
+									)}
+									<p class="texte_a"> {post.data.description}</p>		
+
+								</div>
+								</a>
+								
+								
+							</li></div>
+						))
+					}
+					</div>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

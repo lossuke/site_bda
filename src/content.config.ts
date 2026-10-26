@@ -1,22 +1,28 @@
-import { defineCollection } from 'astro:content';
+import { defineCollection, type SchemaContext } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
+// Share the schema directly so both collections retain their inferred data types.
+const articleSchema = ({ image }: SchemaContext) =>
+	z.object({
+		title: z.string(),
+		description: z.string(),
+		// Transform string to Date object
+		pubDate: z.coerce.date(),
+		updatedDate: z.coerce.date().optional(),
+		heroImage: z.optional(image()),
+		date_debut: z.coerce.date().optional(),
+		date_fin: z.coerce.date().optional(),
+	});
+
 const blog = defineCollection({
-	// Load Markdown and MDX files in the `src/content/blog/` directory.
 	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
-	// Type-check frontmatter using a schema
-	schema: ({ image }) =>
-		z.object({
-			title: z.string(),
-			description: z.string(),
-			// Transform string to Date object
-			pubDate: z.coerce.date(),
-			updatedDate: z.coerce.date().optional(),
-			heroImage: z.optional(image()),
-			date_debut: z.coerce.date().optional(),
-			date_fin: z.coerce.date().optional(),
-		}),
+	schema: articleSchema,
 });
 
-export const collections = { blog };
+const Actus = defineCollection({
+	loader: glob({ base: './src/content/Actus', pattern: '**/*.{md,mdx}' }),
+	schema: articleSchema,
+});
+
+export const collections = { blog, Actus };
