@@ -1,0 +1,214 @@
+---
+import { Image } from 'astro:assets';
+import type { Address } from '../liste_adresses/addresses';
+
+interface Props {
+	addresses: Address[];
+}
+
+const { addresses } = Astro.props;
+const dateFormatter = new Intl.DateTimeFormat('fr-FR', {
+	day: 'numeric',
+	month: 'long',
+	year: 'numeric',
+	timeZone: 'UTC',
+});
+const formatDate = (date: string) => dateFormatter.format(new Date(date));
+---
+
+<ol class="address-list" id="address-list" aria-label="Nos adresses">
+	{
+		addresses.map((place) => (
+			<li id={`address-${place.id}`} data-address-id={place.id} class="address-card">
+				<div class="address-photo">
+					<Image
+						src={place.image}
+						alt={place.imageAlt}
+						width={320}
+						height={320}
+						fit="cover"
+						loading="lazy"
+					/>
+				</div>
+				<div class="address-content">
+					<h2>{place.title}</h2>
+					<h5>{place.auteur}</h5>
+					<p class="address-location">
+						<strong>{place.venue}</strong>
+						<span>{place.address}</span>
+					</p>
+					{(place.startsAt || place.endsAt) && (
+						<p class="address-dates">
+							{place.startsAt && (
+								<>
+									{place.endsAt ? 'Du ' : 'À partir du '}
+									<time datetime={place.startsAt}>{formatDate(place.startsAt)}</time>
+								</>
+							)}
+							{place.endsAt && (
+								<>
+									{place.startsAt ? ' au ' : "Jusqu’au "}
+									<time datetime={place.endsAt}>{formatDate(place.endsAt)}</time>
+								</>
+							)}
+						</p>
+					)}
+					<p class="address-price"><strong>Tarif :</strong> {place.price}</p>
+					<p class="address-description">{place.description}</p>
+					<div class="address-actions">
+						<button
+							type="button"
+							class="locate-button"
+							data-select-address={place.id}
+							aria-controls="addresses-map"
+							aria-pressed="false"
+							disabled
+						>
+							{place.coordinates ? 'Voir sur la carte' : 'Localisation à compléter'}
+						</button>
+						{place.articleUrl && <a class="article-link" href={place.articleUrl}>Lire l’article</a>}
+					</div>
+				</div>
+			</li>
+		))
+	}
+</ol>
+
+<style>
+	.address-list {
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		height: 100%;
+		min-height: 0;
+		margin: 0;
+		padding: 0.25rem 0.75rem 1rem 0.25rem;
+		overflow-y: auto;
+		overscroll-behavior-y: contain;
+		scrollbar-gutter: stable;
+		list-style: none;
+	}
+
+	.address-card {
+		box-sizing: border-box;
+		display: grid;
+		grid-template-columns: 130px minmax(0, 1fr);
+		gap: 1rem;
+		flex-shrink: 0;
+		padding: 1rem;
+		border: 1px solid #d7d7d7;
+		border-radius: 10px;
+		background: white;
+		scroll-margin-block: 1rem;
+	}
+
+	.address-card.is-selected {
+		border-color: var(--accent, #bf1238);
+		box-shadow: 0 0 0 1px var(--accent, #bf1238);
+	}
+
+	.address-card :global(*) {
+		text-align: left;
+	}
+
+	.address-photo {
+		min-width: 0;
+	}
+
+	.address-photo :global(img) {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 1;
+		object-fit: cover;
+		border-radius: 6px;
+	}
+
+	.address-content {
+		min-width: 0;
+	}
+
+	h2 {
+		margin: 0 0 0.65rem;
+		font-size: clamp(1.125rem, 1.7vw, 1.5rem);
+		line-height: 1.25;
+	}
+
+	p {
+		margin: 0 0 0.65rem;
+		font-size: 0.95rem;
+		line-height: 1.5;
+	}
+
+	.address-location span {
+		display: block;
+	}
+
+	.address-dates {
+		color: #555;
+	}
+
+	.address-description {
+		margin-bottom: 1rem;
+	}
+
+	.address-actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.65rem 1rem;
+	}
+
+	.locate-button {
+		box-sizing: border-box;
+		max-width: 100%;
+		padding: 0.55rem 0.75rem;
+		border: 1px solid var(--accent, #bf1238);
+		border-radius: 5px;
+		background: white;
+		color: var(--accent, #bf1238);
+		font: inherit;
+		font-size: 0.9rem;
+		font-weight: 700;
+		line-height: 1.4;
+		cursor: pointer;
+	}
+
+	.locate-button:hover:not(:disabled),
+	.locate-button[aria-pressed='true'] {
+		background: var(--accent, #bf1238);
+		color: white;
+	}
+
+	.locate-button:disabled {
+		border-color: #c8c8c8;
+		background: #f5f5f5;
+		color: #666;
+		cursor: default;
+	}
+
+	.article-link {
+		font-size: 0.95rem;
+		font-weight: 700;
+		text-underline-offset: 0.2em;
+	}
+
+	.locate-button:focus-visible,
+	.article-link:focus-visible {
+		outline: 3px solid var(--accent, #bf1238);
+		outline-offset: 3px;
+	}
+
+	@media (max-width: 600px) {
+		.address-list {
+			padding-right: 0.25rem;
+		}
+
+		.address-card {
+			grid-template-columns: 100px minmax(0, 1fr);
+			gap: 0.75rem;
+			padding: 0.75rem;
+		}
+	}
+</style>

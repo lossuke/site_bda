@@ -1,6 +1,7 @@
 ---
 title: 'Quelques représentations de la répression policière dans l’art'
 description: "Je vous invite à travres 3 oeuvres d'art à découvrir la représsion policière au cours du 19e siècle et du début 20e"
+theme: 'peinture'
 pubDate: '2026-10-17'
 heroImage: '../../assets/article_dagoma_harty/cover.jpg'
 
@@ -44,7 +45,7 @@ L’art peut être utilisé pour véhiculer des messages et représenter des fai
 
 
 
-<p style="padding-left: 60vh">Loam ADELAKOUN</p>
+<p class="article-credit">Loam ADELAKOUN</p>
 
 
 

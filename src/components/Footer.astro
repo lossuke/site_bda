@@ -9,19 +9,19 @@ const today = new Date();
 <footer>
 	 {today.getFullYear()} Le bureau des Arts et Cultures de Télécom Paris.
 	<div class="social-links">
-		<a href="https://www.instagram.com/bda_telecomparis/" target="_blank">
-				<span class="sr-only">suivre le BDA sur instagram</span>
-			</a>
-			<Image src={insta} 
-			alt="logo instagram"
-			height={50}
-			
-			/>
+		<a
+			href="https://www.instagram.com/bda_telecomparis/"
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label="Suivre le BDA sur Instagram (nouvel onglet)"
+		>
+			<Image src={insta} alt="" width={50} height={50} />
+		</a>
 	</div>
 </footer>
 <style>
 	footer {
-		padding: 2em 1em 6em 1em;
+		padding: 2em 1em;
 		background: linear-gradient(var(--gray-gradient)) no-repeat;
 		color: rgb(var(--gray));
 		text-align: center;
@@ -33,6 +33,7 @@ const today = new Date();
 		margin-top: 1em;
 	}
 	.social-links a {
+		display: inline-flex;
 		text-decoration: none;
 		color: rgb(var(--gray));
 	}

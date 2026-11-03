@@ -1,9 +1,9 @@
 ---
 title: 'TALK OF THE TOWN'
 description: "exemple et mode d'emploi "
-pubDate: '2026-10-03'
+pubDate: '2099-10-03'
 heroImage: '../../assets/article_dagoma_harty/cover.jpg'
-
+theme: 'TUTO'
 date_debut: '2026-09-25'
 date_fin: '2026-11-07'
 ---
@@ -30,7 +30,7 @@ Les scènes choisies sont volontairement ordinaires : un bus, un court de tennis
 Le récit, chez lui, ne se referme jamais. Il reste suspendu entre deux visages, entre ce qui est montré et ce qui est suggéré. C’est au spectateur qu’il revient de le compléter avec sa propre mémoire, ses propres associations, sa propre histoire.
 Pour cette exposition, 11 œuvres convergent dans une nouvelle constellation. Venues d’ailleurs, elles nouent d’autres liens et, comme toute rumeur, n’attendent que d’être à nouveau mises en circulation.
 
-<p style="padding-left: 60vh"> Galerie Dagoma Harty </p>
+<p class="article-credit"> Galerie Dagoma Harty </p>
 
 ## Informations pratiques
 

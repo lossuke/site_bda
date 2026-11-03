@@ -1,7 +1,9 @@
 ---
 title: '2e tuto'
 description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
-pubDate: 'Jun 19 2024'
+pubDate: '2099-10-26'
+theme: 'peinture'
+
 heroImage: '../../assets/article_dagoma_harty/cover.jpg'
 date_debut: '2025-10-03'
 date_fin: '2026-10-05'
@@ -41,7 +43,7 @@ Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sap
 
 ### Output
 
-![blog placeholder](../../assets/blog-placeholder-about.jpg)
+
 
 ## Blockquotes
 

@@ -1,11 +1,13 @@
 ---
 title: "Rédiger un article pour le BDA en Markdown avec Astro"
 description: "Un guide pratique pour publier du texte, des images, de la musique et des vidéos sur le blog du BDA."
+theme: 'peinture'
+
 heroImage: '../../assets/article_dagoma_harty/cover2.jpg'
-pubDate: '2026-10-02'
+pubDate: '2099-10-26'
 ---
 
-Chaque article de ce blog est un fichier `.md` placé dans le dossier `src/content/blog/`. Astro transforme son contenu en une page web et l’ajoute à la liste des articles.
+Chaque article de ce blog est un fichier `.md` placé dans le dossier `src/content/blog/`. Astro transforme son contenu en une page web. Il l’ajoute à la liste `/blog/` et au flux RSS si sa date de publication est passée ou tombe le jour de la génération du site.
 
 Le Markdown permet de rédiger du texte avec une syntaxe simple. Pour les lecteurs audio, les vidéos et certaines présentations, on peut aussi écrire du HTML directement dans le même fichier.
 
@@ -41,13 +43,23 @@ Le bloc entre les deux lignes `---` s’appelle le **frontmatter**. Il contient 
 | --- | --- | --- |
 | `title` | Titre de l’article | Oui |
 | `description` | Courte description, notamment utilisée dans les métadonnées de la page | Oui |
-| `pubDate` | Date de publication, aussi utilisée pour classer les articles | Oui |
+| `pubDate` | Date affichée, classement des articles et apparition dans la liste du blog et le RSS | Oui |
 | `heroImage` | Image de couverture  MEttez les en 16:9 (format pyasage iphone quoi)| Non |
 | `date_debut` | Début de l’événement | Non |
 | `date_fin` | Fin de l’événement | Non |
 | `updatedDate` | Date de mise à jour | Non |
 
 Écris les dates complètes entre guillemets, au format `'2026-10-04'`. Un nombre comme `2026` ne représente pas correctement une année avec la conversion de dates utilisée par le blog.
+
+Une `pubDate` future retire l’article de la liste `/blog/` et du RSS jusqu’à cette date. La comparaison utilise les jours du fuseau **Europe/Paris** et inclut le jour courant. Par exemple, pour garder un article hors de cette liste jusqu’au 1er janvier 2099, remplace la ligne `pubDate` de son frontmatter par :
+
+```yaml
+pubDate: '2099-01-01'
+```
+
+**L’URL directe reste accessible** dès la génération et le déploiement du site. L’article reste public et peut être trouvé dans le sitemap ou depuis d’autres liens, notamment la page Exposition. Ce filtre ne s’applique pas aux actualités de `/Actu/`, qui continuent d’afficher les publications futures.
+
+Le site est statique : pour faire apparaître un article lorsque sa date est atteinte, relance `npm run build` puis déploie le résultat. La liste et le RSS déjà en ligne ne changent pas automatiquement à minuit. Pour un brouillon qui ne doit pas encore être public, garde son fichier hors des dossiers de contenu.
 
 L’image de couverture de cet exemple existe déjà dans le projet : remplace-la par ton image lorsque tu prépares ton article. Les deux dates d’événement permettent d’afficher la période dans la liste des articles lorsqu’elles sont toutes les deux renseignées.
 

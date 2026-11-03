@@ -1,0 +1,139 @@
+---
+import AddressList from '../components/AddressList.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { getAddresses } from '../liste_adresses/addresses';
+
+const addresses = await getAddresses();
+const mapAddresses = addresses.map(({ id, title, venue, address, coordinates }) => ({
+	id, title, venue, address, coordinates,
+}));
+---
+
+<!doctype html>
+<html lang="fr">
+	<head>
+		<BaseHead
+			title="Nos adresses | Bureau des Arts et Cultures de Télécom Paris"
+			description="Retrouve les expositions et les adresses culturelles du BDA sur une carte de Paris."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="page-heading">
+				<h1>Nos adresses</h1>
+				<p>Expositions, galeries et lieux à découvrir à Paris.</p>
+			</div>
+			<div class="address-explorer" data-address-explorer data-addresses={JSON.stringify(mapAddresses)}>
+				<section class="list-panel" aria-labelledby="addresses-list-title">
+					<div class="panel-heading">
+						<h2 id="addresses-list-title">À découvrir</h2>
+						<span>{addresses.length} {addresses.length === 1 ? 'adresse' : 'adresses'}</span>
+					</div>
+					{addresses.length === 0 && <p>Nos adresses arrivent bientôt.</p>}
+					<AddressList addresses={addresses} />
+				</section>
+				<section class="map-panel" aria-labelledby="map-title">
+					<div class="panel-heading">
+						<h2 id="map-title">La carte de Paris</h2>
+						<button type="button" class="overview-button" data-reset-map hidden>Vue d’ensemble</button>
+					</div>
+					<div id="addresses-map" class="address-map" role="region" aria-label="Carte interactive des adresses à Paris"></div>
+					<p class="map-status" data-map-status role="status">Active JavaScript pour utiliser la carte interactive.</p>
+					<noscript><p>Active JavaScript pour relier les fiches à la carte. Les adresses restent accessibles dans la liste.</p></noscript>
+					<a class="external-map-link" href="https://www.openstreetmap.org/#map=12/48.8566/2.3522" target="_blank" rel="noopener noreferrer">Ouvrir Paris dans OpenStreetMap <span class="sr-only">(nouvel onglet)</span> ↗</a>
+				</section>
+			</div>
+		</main>
+		<Footer />
+		<script>
+			import '../scripts/address-map';
+		</script>
+	</body>
+</html>
+
+<style>
+	main {
+		box-sizing: border-box;
+		width: min(1440px, calc(100% - 3rem));
+		max-width: none;
+		margin: 0 auto;
+		padding: 2.5rem 0 4rem;
+	}
+	main :global(*) { text-align: left; }
+	.page-heading { margin-bottom: 2rem; }
+	h1 { font-size: clamp(2.25rem, 5vw, 3.25rem); }
+	.page-heading p { margin: 0.5rem 0 0; }
+	.address-explorer {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		gap: 1.75rem;
+		height: clamp(560px, 73vh, 800px);
+	}
+	.list-panel, .map-panel {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		min-height: 0;
+	}
+	.list-panel { overflow: hidden; }
+	.panel-heading {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
+		min-height: 2.5rem;
+		margin-bottom: 1rem;
+	}
+	.panel-heading h2 { margin: 0; font-size: 1.35rem; }
+	.panel-heading span { font-size: 0.9rem; }
+	.address-map {
+		flex: 1;
+		min-height: 0;
+		border: 1px solid #d6dce1;
+		border-radius: 10px;
+		background: #edf1ed;
+		font-family: inherit;
+		z-index: 0;
+	}
+	.address-map :global(.leaflet-tile) { border-radius: 0; }
+	.address-map :global(.leaflet-control-zoom a) { text-align: center; }
+	.address-map :global(.address-marker) {
+		box-sizing: border-box;
+		display: grid;
+		place-items: center;
+		border: 2px solid white;
+		border-radius: 50%;
+		background: var(--accent);
+		box-shadow: 0 2px 8px #0004;
+		color: white;
+		font-size: 16px;
+		font-weight: 700;
+	}
+	.address-map :global(.address-marker.is-selected) { background: #222939; outline: 3px solid var(--accent); }
+	.address-map :global(.leaflet-popup-content) { font-family: 'Rosario', sans-serif; font-size: 15px; }
+	.address-map :global(.leaflet-popup-content p) { margin: 0.5rem 0 0; }
+	.map-status { min-height: 2.8em; margin: 0.75rem 0 0.25rem; font-size: 0.85rem; line-height: 1.4; }
+	.external-map-link { align-self: flex-start; font-size: 0.8rem; text-underline-offset: 0.2em; }
+	.overview-button {
+		padding: 0.35rem 0.65rem;
+		border: 1px solid var(--accent);
+		border-radius: 5px;
+		background: white;
+		color: var(--accent);
+		font: inherit;
+		font-size: 0.8rem;
+		cursor: pointer;
+	}
+	.overview-button:hover { background: var(--accent); color: white; }
+	.overview-button:focus-visible, .external-map-link:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+	@media (max-width: 900px) {
+		main { width: calc(100% - 2rem); padding-top: 2rem; }
+		.address-explorer { grid-template-columns: minmax(0, 1fr); height: auto; gap: 2rem; }
+		.list-panel { height: auto; max-height: min(620px, 70vh); }
+		.map-panel { height: 540px; }
+	}
+</style>

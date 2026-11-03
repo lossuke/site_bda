@@ -8,7 +8,7 @@ import Header from '../components/Header.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage , date_debut, date_fin} = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage , date_debut, date_fin, theme} = Astro.props;
 ---
 
 <html lang="fr">
@@ -16,7 +16,7 @@ const { title, description, pubDate, updatedDate, heroImage , date_debut, date_f
 		<BaseHead title={title} description={description} />
 		<style>
 			main {
-				width: calc(100% - 2em);
+				width: 100%;
 				max-width: 100%;
 				margin: 0;
 			}
@@ -30,11 +30,14 @@ const { title, description, pubDate, updatedDate, heroImage , date_debut, date_f
 				box-shadow: var(--box-shadow);
 			}
 			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
+				width: 760px;
+				max-width: 100%;
 				margin: auto;
 				padding: 1em;
 				color: rgb(var(--gray-dark));
+			}
+			.prose > :global(p:not(.article-credit):not(:has(img, picture, video, audio, iframe))) {
+				text-indent: 2em;
 			}
 			.title {
 				margin-bottom: 1em;
@@ -76,6 +79,7 @@ const { title, description, pubDate, updatedDate, heroImage , date_debut, date_f
 							}
 						</div>
 						<h1>{title}</h1>
+						
 						<hr />
 					</div>
 					<slot />

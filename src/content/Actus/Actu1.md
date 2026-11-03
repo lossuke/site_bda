@@ -1,7 +1,7 @@
 ---
-title: 'Actu 1'
-description: "exemple et mode d'emploi "
-pubDate: '2026-10-03'
+title: 'Atelier Poterie'
+description: "Atelier Poterie du BDA "
+pubDate: '2026-10-20'
 
 ---
 

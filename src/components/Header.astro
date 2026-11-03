@@ -1,81 +1,217 @@
 ---
-
-import { SITE_TITLE , Titre } from '../consts';
+import { Image } from 'astro:assets';
+import { Titre } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 import insta from '../assets/insta.svg';
 import logo from '../assets/logo.svg';
-import Image from 'astro/components/Image.astro';
-
-
-
 ---
 
-<header>
-	<nav>
-		<h2><a href="/">{Titre}</a></h2>
-		<a href="/" class="">
-		<Image src={logo}
-		alt="logo du BDA"
-		height={50} />
+<header class="site-header" data-site-header>
+	<div class="header-inner">
+		<a class="site-title" href="/">{Titre}</a>
+		<a class="site-logo" href="/" aria-label="BDA — Accueil">
+			<Image src={logo} alt="Logo du BDA" width={64} height={64} />
 		</a>
-
-		<div class="internal-links">
-			<HeaderLink href="/">Accueil</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/Actu">Actualités</HeaderLink>
-			<HeaderLink href="/Actu">Contact</HeaderLink>
-
-		</div>
-		<div class="social-links">
-			<a href="https://www.instagram.com/bda_telecomparis/" target="_blank">
-			<Image src={insta} 
-			alt="logo instagram"
-			height={50}
-			/></a>
-				<span class="sr-only">suivre le BDA sur instagram</span>
-			
-			
-		</div>
-	</nav>
+		<button
+			type="button"
+			class="menu-toggle"
+			aria-label="Ouvrir le menu"
+			aria-expanded="false"
+			aria-controls="site-navigation"
+			hidden
+		>
+			<span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+			<span class="menu-label">Menu</span>
+		</button>
+		<nav id="site-navigation" class="site-navigation" aria-label="Navigation principale">
+			<div class="internal-links">
+				<HeaderLink href="/">Accueil</HeaderLink>
+				<HeaderLink href="/blog">Blog</HeaderLink>
+				<HeaderLink href="/Actu">Actualités</HeaderLink>
+				<HeaderLink href="/nos-adresses">Nos adresses</HeaderLink>
+				<HeaderLink href="/contact">Contact</HeaderLink>
+			</div>
+			<a class="instagram-link" href="https://www.instagram.com/bda_telecomparis/" target="_blank" rel="noopener noreferrer">
+				<Image src={insta} alt="" width={38} height={38} />
+				<span class="instagram-label">Instagram</span>
+				<span class="sr-only"> du BDA (nouvel onglet)</span>
+			</a>
+		</nav>
+	</div>
 </header>
+
+<script>
+	const header = document.querySelector<HTMLElement>('[data-site-header]');
+	const toggle = header?.querySelector<HTMLButtonElement>('.menu-toggle');
+	const navigation = header?.querySelector<HTMLElement>('#site-navigation');
+	if (header && toggle && navigation) {
+		const compact = window.matchMedia('(max-width: 1199px)');
+		header.dataset.menuReady = 'true';
+
+		const setOpen = (open: boolean, returnFocus = false) => {
+			toggle.setAttribute('aria-expanded', String(open));
+			toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+			navigation.hidden = compact.matches && !open;
+			if (returnFocus) toggle.focus();
+		};
+		const syncLayout = () => {
+			const focusWasInNavigation = navigation.contains(document.activeElement);
+			const toggleHadFocus = document.activeElement === toggle;
+			toggle.hidden = !compact.matches;
+			setOpen(false, compact.matches && focusWasInNavigation);
+			if (!compact.matches && toggleHadFocus) navigation.querySelector('a')?.focus();
+		};
+		syncLayout();
+		compact.addEventListener('change', syncLayout);
+		toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+		navigation.addEventListener('click', (event) => {
+			if (compact.matches && event.target instanceof Element && event.target.closest('a')) setOpen(false, true);
+		});
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') setOpen(false, true);
+		});
+		document.addEventListener('click', (event) => {
+			if (compact.matches && event.target instanceof Node && !header.contains(event.target)) setOpen(false);
+		}, { capture: true });
+		header.addEventListener('focusout', (event) => {
+			if (compact.matches && event.relatedTarget instanceof Node && !header.contains(event.relatedTarget)) setOpen(false);
+		});
+	}
+</script>
+
 <style>
-	header {
-		margin: 0;
-		padding: 0 1em;
+	.site-header {
+		position: relative;
+		z-index: 1000;
 		background: white;
 		box-shadow: 0 2px 8px rgba(var(--black), 5%);
 	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
+	.header-inner {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+		align-items: center;
+		column-gap: 1.5rem;
+		min-height: 104px;
+		padding: 0 1.5rem;
 	}
-
-	h2 a,
-	h2 a.active {
+	.site-title {
+		grid-column: 1;
+		grid-row: 1;
+		justify-self: start;
+		min-width: 0;
+		color: rgb(var(--black));
+		font-size: clamp(1rem, 1.25vw, 1.25rem);
+		font-weight: 700;
+		line-height: 1.35;
+		text-align: left;
 		text-decoration: none;
 	}
-	nav {
+	.site-logo {
+		grid-column: 2;
+		grid-row: 1;
+		display: block;
+		width: 64px;
+		height: 64px;
+	}
+	.site-header :global(img) { display: block; border-radius: 0; }
+	.site-navigation {
+		grid-column: 3;
+		grid-row: 1;
+		justify-self: end;
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		gap: 1rem;
+		min-width: 0;
 	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
-	}
-	.social-links,
-	.social-links a {
+	.internal-links { display: flex; align-items: center; gap: 0.5rem; }
+	.internal-links :global(a) {
 		display: flex;
+		align-items: center;
+		min-height: 104px;
+		padding: 0.75rem 0.35rem;
+		border-bottom: 4px solid transparent;
+		color: rgb(var(--black));
+		font-size: 1.05rem;
+		line-height: 1.3;
+		text-align: left;
+		text-decoration: none;
+		white-space: nowrap;
 	}
-	@media (max-width: 720px) {
-		.social-links {
-			display: none;
+	.internal-links :global(a.active) { border-bottom-color: var(--accent); text-decoration: none; }
+	.internal-links :global(a:hover) { color: var(--accent); }
+	.instagram-link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		min-width: 44px;
+		min-height: 44px;
+		color: rgb(var(--black));
+		text-decoration: none;
+	}
+	.instagram-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+	.menu-toggle {
+		display: none;
+		align-items: center;
+		justify-content: center;
+		gap: 0.6rem;
+		min-width: 44px;
+		min-height: 44px;
+		padding: 0.6rem;
+		border: 1px solid #d7dce3;
+		border-radius: 6px;
+		background: white;
+		color: rgb(var(--black));
+		font: inherit;
+		font-size: 0.9rem;
+		cursor: pointer;
+	}
+	.menu-icon { display: grid; gap: 4px; width: 22px; }
+	.menu-icon span { display: block; height: 2px; border-radius: 1px; background: currentColor; transition: transform 0.15s ease, opacity 0.15s ease; }
+	.menu-toggle[aria-expanded='true'] .menu-icon span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+	.menu-toggle[aria-expanded='true'] .menu-icon span:nth-child(2) { opacity: 0; }
+	.menu-toggle[aria-expanded='true'] .menu-icon span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+	.menu-toggle[hidden], .site-navigation[hidden] { display: none; }
+	.site-header :global(a:focus-visible), .menu-toggle:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+
+	@media (max-width: 1199px) {
+		.header-inner { grid-template-columns: auto minmax(0, 1fr) auto; gap: 1rem; min-height: 88px; padding: 0.75rem 1rem; }
+		.menu-toggle { display: inline-flex; grid-column: 1; grid-row: 1; }
+		.site-title { grid-column: 2; font-size: 1rem; }
+		.site-logo { grid-column: 3; justify-self: end; width: 56px; height: 56px; }
+		.site-logo :global(img) { width: 100%; height: 100%; }
+		.site-navigation {
+			grid-column: 1 / -1;
+			grid-row: 2;
+			justify-self: stretch;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.75rem;
+			padding: 0.75rem 1rem 1rem;
+			background: white;
+			border-top: 1px solid #e5e9f0;
 		}
+		.site-header[data-menu-ready] .site-navigation {
+			position: absolute;
+			top: 100%;
+			inset-inline: 0;
+			max-height: min(32rem, 70dvh);
+			overflow-y: auto;
+			box-shadow: 0 8px 12px #0f121914;
+		}
+		.internal-links { flex-direction: column; align-items: stretch; gap: 0.25rem; }
+		.internal-links :global(a) { min-height: 44px; padding: 0.75rem 1rem; border-bottom: 0; border-left: 3px solid transparent; border-radius: 4px; font-size: 1rem; }
+		.internal-links :global(a.active) { border-left-color: var(--accent); background: #bf12380a; }
+		.instagram-link { justify-content: flex-start; align-self: flex-start; padding: 0.5rem 1rem; }
+		.instagram-link :global(img) { width: 28px; height: 28px; }
+		.instagram-label { position: static; width: auto; height: auto; overflow: visible; clip-path: none; }
+	}
+	@media (max-width: 480px) {
+		.header-inner { gap: 0.75rem; }
+		.site-title { font-size: 0.85rem; }
+		.menu-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.menu-icon span { transition: none; }
 	}
 </style>

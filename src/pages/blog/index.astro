@@ -7,8 +7,10 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 import DateDure from '../../components/date_dure.astro';
+import { isBlogPostListed } from '../../utils/blog-visibility';
 
-const posts = (await getCollection('blog')).sort(
+const now = new Date();
+const posts = (await getCollection('blog', ({ data }) => isBlogPostListed(data.pubDate, now))).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
@@ -63,6 +65,12 @@ const posts = (await getCollection('blog')).sort(
 				margin: 0;
 				color: rgb(var(--gray));
 			}
+			.theme {
+				margin: 0.5rem 0 0;
+				color: var(--accent);
+				font-size: 0.9em;
+				font-weight: 700;
+			}
 			ul li a:hover h4,
 			ul li a:hover .date {
 				color: rgb(var(--accent));
@@ -91,6 +99,7 @@ const posts = (await getCollection('blog')).sort(
 		<Header />
 		<main>
 			<section>
+				{posts.length === 0 && <p>Aucun article à afficher pour le moment.</p>}
 				<ul>
 					{
 						posts.map((post) => (
@@ -110,6 +119,7 @@ const posts = (await getCollection('blog')).sort(
 											date_fin={post.data.date_fin} 
 										/>
 									)}
+									{post.data.theme && <p class="theme">Thème : {post.data.theme}</p>}
 								</a>
 							</li>
 						))

@@ -8,9 +8,10 @@ import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 import DateDure from '../../components/date_dure.astro';
 
-const posts = (await getCollection('Actus')).sort(
+const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
 ---
 
 <!doctype html>
@@ -115,7 +116,7 @@ const posts = (await getCollection('Actus')).sort(
 								<li>
 								
 								
-								<a href={`/Actu/${post.id}/`}>
+								<a href={`/blog/${post.id}/`}>
 									
 								
 								<div class="texte">
@@ -123,6 +124,9 @@ const posts = (await getCollection('Actus')).sort(
 									<p class="date">
 										<FormattedDate date={post.data.pubDate} />
 									</p>
+									<br>
+									
+									{post.data.theme && <p>{post.data.theme}</p>}
 									{post.data.date_debut && post.data.date_fin && (
 										<DateDure
 											date_debut={post.data.date_debut}

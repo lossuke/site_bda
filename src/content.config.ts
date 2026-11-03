@@ -11,6 +11,7 @@ const articleSchema = ({ image }: SchemaContext) =>
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
 		heroImage: z.optional(image()),
+		theme: z.string().optional(),
 		date_debut: z.coerce.date().optional(),
 		date_fin: z.coerce.date().optional(),
 	});
