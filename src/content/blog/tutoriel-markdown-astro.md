@@ -128,7 +128,7 @@ La syntaxe est `![description de l’image](chemin)` :
 
 Depuis un article situé directement dans `src/content/blog/`, le chemin `../../assets/installation.jpg` remonte de deux dossiers pour rejoindre `src/assets/`. Si tu ranges tes articles dans des sous-dossiers, adapte ce chemin.
 
-Astro peut traiter et optimiser les images locales référencées en Markdown depuis `src/`. Pour présenter plusieurs œuvres simplement, répète le bloc image et légende. Une galerie en colonnes nécessite une mise en page supplémentaire en CSS ou un composant.
+Astro peut traiter et optimiser les images locales référencées en Markdown depuis `src/`. Pour présenter plusieurs œuvres simplement, répète le bloc image et légende. Pour une grande image à gauche, deux à droite et une vue large en dessous, utilise la classe `image-mosaic` : [voir la démonstration et le bloc Markdown à copier](/blog/demo-mosaique-images/).
 
 ## 4. Ranger les fichiers dans public
 
