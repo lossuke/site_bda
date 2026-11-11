@@ -5,6 +5,7 @@ import ExhibitionImage1 from '../assets/adresses/ad1.jpg';
 import ExhibitionImage2 from '../assets/adresses/ad2.png';
 import ExhibitionImage3 from '../assets/adresses/ad3.png';
 import ExhibitionImage4 from '../assets/adresses/ad4.png';
+import ExhibitionImage5 from '../assets/adresses/ad5.png';
 
 
 
@@ -88,6 +89,20 @@ export async function getAddresses(): Promise<Address[]> {
   startsAt: '2026-10-21',
   endsAt: '2026-12-23',
   coordinates: [48.860265, 2.363881],
+},
+{
+  id: 'ma-nouvelle-adresse',
+  title: 'LOOK ! 40 ANS DE MODE AU MUSÉE',
+  auteur: "",
+  venue: 'Musée des Arts Décoratifs',
+  address: '107 Rue de Rivoli, 75001 Paris',
+  description: 'Une courte présentation du lieu ou de l’exposition.',
+  price: '10€',
+  image: ExhibitionImage5,
+  imageAlt: "Une des expositions les plus poétiques de cet automne où l'artiste sud-Africane peint sur du paipier dentelle, un marqueur de son histoire famillilale.",
+  startsAt: '2026-10-21',
+  endsAt: '2027-04-04',
+  coordinates: [48.863360, 2.333166],
 },
 	];
 }
