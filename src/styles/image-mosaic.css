@@ -12,6 +12,15 @@
 	margin-block: 2rem;
 }
 
+/* Three images: one large image on the left and two stacked on the right. */
+.image-mosaic--three {
+	grid-template-rows: minmax(0, 1.3fr) minmax(0, 1fr);
+	grid-template-areas:
+		"main detail-top"
+		"main detail-bottom";
+	aspect-ratio: 1240 / 724;
+}
+
 /* Optional: let the gallery extend beyond the article's text column. */
 .image-mosaic--wide {
 	width: min(1120px, calc(100vw - 4rem));
@@ -60,6 +69,10 @@
 	.image-mosaic--wide {
 		width: 100%;
 		margin-inline: 0;
+	}
+
+	.image-mosaic--three {
+		grid-template-areas: "main" "detail-top" "detail-bottom";
 	}
 
 	.image-mosaic :is(a, picture, img) {

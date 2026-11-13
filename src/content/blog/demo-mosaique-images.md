@@ -1,8 +1,9 @@
 ---
 title: "Dagoma Harty : une mosaïque d’images"
-description: "Une grande photo, deux détails et une vue d’ensemble : une disposition à réutiliser dans vos articles Markdown."
-pubDate: '2026-11-04'
+description: "Deux dispositions à trois ou quatre images à réutiliser dans vos articles Markdown."
+pubDate: '2036-11-04'
 theme: 'TUTO'
+Auteur: 'Loam ADELAKOUN'
 ---
 
 Une grande image à gauche, deux images superposées à droite, puis une photographie sur toute la largeur : voici la disposition en situation avec les photos de l’article [TALK OF THE TOWN](/blog/article_exemple/), consacré à la galerie Dagoma Harty.
@@ -21,7 +22,39 @@ Une grande image à gauche, deux images superposées à droite, puis une photogr
 
 *Photographies reprises de l’article Dagoma Harty. La vue de la salle est utilisée deux fois pour illustrer les quatre emplacements.*
 
-## Reproduire cette disposition
+## Variante à trois images
+
+Ajoutez la classe `image-mosaic--three` pour afficher une grande photo à gauche et deux photos superposées à droite, sans rangée supplémentaire en dessous.
+
+<div class="image-mosaic image-mosaic--three image-mosaic--wide">
+
+![Trois portraits encadrés accrochés près de l’escalier de la galerie Dagoma Harty](../../assets/article_dagoma_harty/img1.jpg)
+
+![Détail du tableau de Neo Matloga représentant des personnages avec des raquettes de tennis](../../assets/article_dagoma_harty/img2.jpg)
+
+![Détail de la salle de la galerie, avec une poutre apparente et des tableaux](../../assets/article_dagoma_harty/cover.jpg)
+
+</div>
+
+*Trois photographies de la galerie Dagoma Harty, dans l’ordre de lecture de la mosaïque.*
+
+### Le bloc à copier pour trois images
+
+```markdown
+<div class="image-mosaic image-mosaic--three image-mosaic--wide">
+
+![Trois portraits près de l’escalier](../../assets/article_dagoma_harty/img1.jpg)
+
+![Personnages avec des raquettes de tennis](../../assets/article_dagoma_harty/img2.jpg)
+
+![Vue de la salle de la galerie](../../assets/article_dagoma_harty/cover.jpg)
+
+</div>
+```
+
+Utilisez **exactement trois images** : la grande image à gauche, celle en haut à droite, puis celle en bas à droite. La classe `image-mosaic--wide` reste facultative : retirez-la pour garder la largeur de la colonne du texte.
+
+## Reproduire la disposition à quatre images
 
 Copiez ce bloc directement dans un fichier `.md` de `src/content/blog/`, à l’endroit où vous souhaitez afficher vos images. Remplacez les chemins et les descriptions par les vôtres. Le CSS est déjà chargé sur le site : aucun import ni composant n’est nécessaire dans l’article.
 
@@ -49,7 +82,7 @@ Gardez **exactement quatre images**, dans cet ordre : la grande image à gauche,
 
 La classe `image-mosaic` crée la grille dans la colonne du texte. Ajoutez `image-mosaic--wide`, comme dans cet exemple, pour élargir la galerie jusqu’à 1 120 pixels tout en gardant une marge sur les côtés.
 
-Sur ordinateur, les photographies remplissent leur emplacement sans être déformées ; leurs bords peuvent être recadrés. Choisissez donc des images dont le sujet reste lisible au centre. À 600 pixels de largeur d’écran ou moins, les quatre photos passent en une seule colonne, dans le même ordre, et retrouvent leur cadrage complet.
+Sur ordinateur, les photographies remplissent leur emplacement sans être déformées ; leurs bords peuvent être recadrés. Choisissez donc des images dont le sujet reste lisible au centre. À 600 pixels de largeur d’écran ou moins, les photos des deux variantes passent en une seule colonne, dans le même ordre, et retrouvent leur cadrage complet.
 
 Pour modifier l’espace entre les images, ajoutez par exemple `style="--mosaic-gap: 12px;"` sur le `<div>`. L’espacement par défaut est de 8 pixels, avec des angles droits comme dans le modèle.
 

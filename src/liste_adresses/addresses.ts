@@ -35,7 +35,7 @@ export async function getAddresses(): Promise<Address[]> {
 
 	return [
 		{
-  id: 'ma-nouvelle-adresse',
+  id: 'adr1',
   title: 'OUR DREAMS BEGAN TO CHASE US BACK',
   auteur: "lala",
   venue: 'GALERIE PIERRE CORNETTE DE SAINT-CYR',
@@ -49,7 +49,7 @@ export async function getAddresses(): Promise<Address[]> {
   coordinates: [48.867154, 2.309544],
 },
 {
-  id: 'ma-nouvelle-adresse',
+  id: 'adr2',
   title: 'Estampes choisies',
   auteur: "Mamma Andersson, Nalini Malani, Alison Saar",
   venue: 'GALERIE LELONG',
@@ -63,7 +63,7 @@ export async function getAddresses(): Promise<Address[]> {
   coordinates: [48.876819, 2.312659],
 },
 {
-  id: 'ma-nouvelle-adresse',
+  id: 'adr3',
   title: 'The Venice Paintings',
   auteur: "David Salle",
   venue: 'Thaddaeus Ropac',
@@ -77,7 +77,7 @@ export async function getAddresses(): Promise<Address[]> {
   coordinates: [48.899492, 2.407799],
 },
 {
-  id: 'ma-nouvelle-adresse',
+  id: 'adr4',
   title: 'Winter Sun',
   auteur: "Jordan Casteel,",
   venue: 'Thaddaeus Ropac',
@@ -91,7 +91,7 @@ export async function getAddresses(): Promise<Address[]> {
   coordinates: [48.860265, 2.363881],
 },
 {
-  id: 'ma-nouvelle-adresse',
+  id: 'adr5',
   title: 'LOOK ! 40 ANS DE MODE AU MUSÉE',
   auteur: "",
   venue: 'Musée des Arts Décoratifs',

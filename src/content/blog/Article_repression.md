@@ -4,7 +4,7 @@ description: "Je vous invite à travres 3 oeuvres d'art à découvrir la représ
 theme: 'peinture'
 pubDate: '2026-10-17'
 heroImage: '../../assets/article_repression/lacharge.jpg'
-
+Auteur: 'Loam ADELAKOUN'
 ---
 Avec le contexte actuel, on ne peut nier que la répression policière et la question des violences policières occupent une place majeure dans le débat public. Mais à travers quelques œuvres que je voulais vous présenter, nous pouvons avoir une analyse plus fine de la répression exercée par l'État de manière générale et découvrir qu’elle ne date pas d’hier. 
 
