@@ -17,7 +17,7 @@ Fondatrice de la marque iconique _Comme des Garçons_, l’une des plus connues 
 
 En 1969, elle crée Comme des Garçons, que vous connaissez forcément à travers sa gamme _PLAY_ et son petit cœur iconique. La maison inspire de nombreux créateurs japonais qui passent par ses ateliers, comme Junya Watanabe, mais son histoire n’est pas pour aujourd’hui. CDG s’illustre également à travers de nombreuses collaborations. La plus iconique, selon moi, est celle avec Katsuhiro Otomo, créateur d’_Akira_. Vous pouvez trouver un lien vers le manga [ici](https://www.archivepdf.net/scans/comme-des-garcons/katsuhiro-otomo-for-comme-des-garcons-dm-1?page=1) .
 
-![logo_cdg](../../assets/article_mode_japonaise/Akira.png)
+![logo_cdg](../../assets/article_mode_japonaise/akira.png)
 
 Au cours de sa carrière, Kawakubo s’illustre comme une figure de l’avant-garde : à travers ses défilés, elle fait partie de celles et ceux qui brisent les codes. Elle est notamment l’une des premières créatrices à faire un usage quasi exclusif du noir dans ses collections. Elle reprend inlassablement cette couleur associée au deuil pour la sublimer à travers la couture.
 
