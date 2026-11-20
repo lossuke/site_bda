@@ -53,12 +53,3 @@ L’art peut être utilisé pour véhiculer des messages et représenter des fai
 ![image1](../../assets/article_repression/defacement.png)
 
 À travers cette sélection d’œuvres, j’ai voulu montrer que l’art ne sert pas uniquement à être dégradé, sans que l’on prenne le temps de réfléchir à ce qu’il représente. Enfin, ces œuvres représentent des actes de répression en cours ou passés. Nous pouvons alors nous interroger sur ce qui est le plus marquant : l’acte lui-même ou la trace qu’il laisse. Ces trois ensembles d’œuvres permettent également de saisir l’étendue de la répression. Celle-ci passe d’un boulevard à une barricade, jusqu’à pénétrer dans une chambre.<em> Il semble alors que personne ne soit à l’abri, puisque la violence ne connaît aucune frontière dans ces œuvres</em>. Les violences policières traversent le débat public. Les œuvres que je vous propose de regarder en révèlent une profondeur historique : sous d’autres régimes, dans d’autres rues, les images ont déjà porté l’accusation.
-
-
-
-
-
-<p class="article-credit">Loam ADELAKOUN</p>
-
-
-

@@ -1,0 +1,27 @@
+---
+interface Props {
+	author?: string;
+}
+
+const { author } = Astro.props;
+---
+
+{author && <footer class="article-signature">{author}</footer>}
+
+<style>
+	@font-face {
+		font-family: 'Lamoric Rowen';
+		src: url('../assets/fonts/Lamoric Rowen TTF.ttf') format('truetype');
+		font-display: swap;
+	}
+
+	.article-signature {
+		margin-block-start: 0.75rem;
+		color: rgb(var(--black));
+		font-family: 'Lamoric Rowen', cursive;
+		font-size: clamp(2.25rem, 5vw, 3.5rem);
+		line-height: 1.25;
+		overflow-wrap: anywhere;
+		text-align: right;
+	}
+</style>

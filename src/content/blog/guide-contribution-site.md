@@ -32,6 +32,7 @@ Crée `src/content/blog/ma-visite-exposition.md`, puis colle ce modèle complet 
 title: "Notre visite d’une exposition"
 description: "Un aperçu de l’exposition, des œuvres et de nos impressions."
 pubDate: '2026-10-26'
+Auteur: 'Prénom Nom'
 theme: 'Peinture'
 heroImage: '../../assets/article_dagoma_harty/cover.jpg'
 date_debut: '2026-11-01'
@@ -68,6 +69,7 @@ Le bloc entre les deux lignes `---` s’appelle le **frontmatter**. Il contient 
 | `title` | Oui | Titre affiché dans la liste et sur la page de l’article |
 | `description` | Oui | Résumé utilisé dans les métadonnées de la page |
 | `pubDate` | Oui | Date affichée, classement du plus récent au plus ancien et date d’apparition dans la liste du blog et le RSS |
+| `Auteur` | Non | Nom ou pseudonyme affiché en signature à droite, en police LAmoric, à la fin de l’article |
 | `theme` | Non | Thème affiché sous les dates de la carte du blog, par exemple « Thème : Peinture » |
 | `heroImage` | Non | Image de couverture de l’article et de sa carte dans le blog |
 | `date_debut` | Non | Première date de l’événement |

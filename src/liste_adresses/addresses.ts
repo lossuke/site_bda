@@ -37,7 +37,7 @@ export async function getAddresses(): Promise<Address[]> {
 		{
   id: 'adr1',
   title: 'OUR DREAMS BEGAN TO CHASE US BACK',
-  auteur: "lala",
+  auteur: "",
   venue: 'GALERIE PIERRE CORNETTE DE SAINT-CYR',
   address: '29 Avenue Franklin D. Roosevelt, 75008 Paris',
   description: "Une des expositions les plus poétiques de cet automne où l'artiste sud-Africane peint sur du paipier dentelle, un marqueur de son histoire famillilale.",

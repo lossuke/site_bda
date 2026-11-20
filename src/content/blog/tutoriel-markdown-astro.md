@@ -130,6 +130,8 @@ Depuis un article situé directement dans `src/content/blog/`, le chemin `../../
 
 Astro peut traiter et optimiser les images locales référencées en Markdown depuis `src/`. Pour présenter plusieurs œuvres simplement, répète le bloc image et légende. Pour une grande image à gauche, deux à droite et une vue large en dessous, utilise la classe `image-mosaic` : [voir la démonstration et le bloc Markdown à copier](/blog/demo-mosaique-images/).
 
+Pour faire défiler les photographies une par une, utilise la classe `image-carousel` avec autant d’images que tu le souhaites : [voir le carrousel et son bloc Markdown à copier](/blog/demo-mosaique-images/#carrousel). Sépare chaque image par une ligne vide et place les légendes en dehors du bloc. Les lecteurs peuvent utiliser les boutons, les points, le clavier ou un glissement du doigt sur mobile.
+
 ## 4. Ranger les fichiers dans public
 
 Le dossier `public/` est pratique pour les fichiers audio, les vidéos, les PDF et les images utilisées directement dans du HTML. Tu peux créer cette organisation :
@@ -159,10 +161,24 @@ Les fichiers de `public/` sont servis tels quels, sans optimisation automatique 
 
 ## 5. Présenter une œuvre avec sa légende
 
-Pour associer explicitement une image et sa légende, utilise les balises HTML `<figure>` et `<figcaption>` :
+Pour garder une légende proche de l’image, utilise `<figure class="image-caption">` et `<figcaption>`. La légende s’affiche à 8 pixels sous l’image, en plus petit et alignée à gauche :
+
+```markdown
+<figure class="image-caption">
+
+![Trois portraits encadrés près de l’escalier](../../assets/article_dagoma_harty/img1.jpg)
+
+<figcaption>Galerie Dagoma Harty — Trois portraits près de l’escalier.</figcaption>
+
+</figure>
+```
+
+Garde les lignes vides après `<figure>`, avant `<figcaption>` et avant `</figure>` pour que le Markdown traite l’image. Ajoute `image-caption--wide` à la classe de la figure si tu veux élargir l’image et sa légende. [Voir le rendu avec une photographie de la galerie Dagoma Harty](/blog/demo-mosaique-images/#une-image-avec-sa-légende).
+
+Pour une image du dossier `public/`, tu peux aussi employer une balise `<img>` :
 
 ```html
-<figure>
+<figure class="image-caption">
   <img
     src="/images/sculpture.jpg"
     alt="Une sculpture en bois composée de formes entrelacées"

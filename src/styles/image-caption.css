@@ -1,0 +1,57 @@
+/* Keep an image (or a gallery) and its caption together in Markdown. */
+.image-caption {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	min-width: 0;
+	margin: 2rem 0;
+}
+
+/* Markdown wraps each image in a paragraph; remove its prose spacing. */
+.image-caption > :is(p, .image-mosaic, .image-carousel),
+.prose .image-caption > p {
+	margin: 0;
+}
+
+.image-caption > :is(img, picture),
+.image-caption > p :is(a, picture, img) {
+	display: block;
+	max-width: 100%;
+}
+
+.image-caption > img,
+.image-caption > picture img,
+.image-caption > p img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.image-caption > figcaption {
+	margin: 0;
+	font-size: 0.85em;
+	line-height: 1.45;
+	color: rgb(var(--gray-dark));
+	text-align: left;
+	text-indent: 0;
+}
+
+.image-caption > figcaption p,
+.prose .image-caption > figcaption p {
+	margin: 0;
+	text-align: left;
+	text-indent: 0;
+}
+
+.image-caption--wide {
+	width: min(1120px, calc(100vw - 4rem));
+	max-width: none;
+	margin-inline: calc((100% - min(1120px, calc(100vw - 4rem))) / 2);
+}
+
+@media (max-width: 600px) {
+	.image-caption--wide {
+		width: 100%;
+		margin-inline: 0;
+	}
+}

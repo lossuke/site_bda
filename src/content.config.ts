@@ -7,6 +7,7 @@ const articleSchema = ({ image }: SchemaContext) =>
 	z.object({
 		title: z.string(),
 		description: z.string(),
+		Auteur: z.string().trim().optional(),
 		// Transform string to Date object
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
