@@ -66,10 +66,13 @@ const posts = (await getCollection('blog', ({ data }) => isBlogPostListed(data.p
 				color: rgb(var(--gray));
 			}
 			.theme {
-				margin: 0.5rem 0 0;
+				margin: 0.2rem 0 0;
 				color: var(--accent);
 				font-size: 0.9em;
 				font-weight: 700;
+			}
+			.auteur{
+				color: black;
 			}
 			ul li a:hover h4,
 			ul li a:hover .date {
@@ -120,6 +123,8 @@ const posts = (await getCollection('blog', ({ data }) => isBlogPostListed(data.p
 										/>
 									)}
 									{post.data.theme && <p class="theme">Thème : {post.data.theme}</p>}
+									{post.data.Auteur && <p class="auteur">Auteur: {post.data.Auteur}</p>}
+
 								</a>
 							</li>
 						))

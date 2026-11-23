@@ -1,7 +1,7 @@
 ---
 title: "La mode Japonaise à travers deux créateurs iconiques "
 description: "Deux mosaïques et un carrousel à réutiliser dans vos articles Markdown avec les photographies de la galerie."
-pubDate: '2026-11-04'
+pubDate: '2026-11-23'
 theme: 'Mode'
 Auteur: 'Loam ADELAKOUN'
 heroImage: '../../assets/article_mode_japonaise/cover.png'

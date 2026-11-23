@@ -2,7 +2,7 @@
 title: 'Quelques représentations de la répression policière dans l’art'
 description: "Je vous invite à travres 3 oeuvres d'art à découvrir la représsion policière au cours du 19e siècle et du début 20e"
 theme: 'peinture'
-pubDate: '2026-10-17'
+pubDate: '2026-10-29'
 heroImage: '../../assets/article_repression/lacharge.jpg'
 Auteur: 'Loam ADELAKOUN'
 ---

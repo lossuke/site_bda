@@ -4,6 +4,7 @@ description: "Je vous invite à travres 3 oeuvres d'art à découvrir la représ
 pubDate: '2026-10-17'
 heroImage: '../../assets/article_white_box/cover.png'
 Auteur: 'Loam ADELAKOUN'
+theme: 'Culture'
 ---
 
 Avez-vous déjà ressenti ce silence particulier dans une galerie d'art, cet éclairage blanc et homogène, ce calme absolu qui, galerie après galerie, finit par vous sembler familier sans jamais vous appartenir? C’est précisément ce qui constitue le phénomène de white box attribué aux galeries d’art modernes depuis les années 1970. Tout d’abord le white cube/box n’est pas seulement un sentiment mais une réelle construction. Une galerie d’art avec ses 4 murs d’un blanc immaculé , un éclairage artificiel  provenant du plafond, l’absence d’éclairage naturel et son sol le plus souvent en béton ou un parquet c’est le schéma classique de la galerie d’art que nous retrouvons dans la plus part des pays que ce soit de Paris à Tokyo. Cette esthétique est devenue si représentative de l’art moderne que l'une des galeries les plus en vogue du monde actuellement ne nomme “white cube” étrange pour une galerie qui pratique le white cube. 
